@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin:5.2.1
+    restart: always
+    ports:
+      - "8081:80"
+    networks:
+      - lan
+    depends_on:
+      - db
+  db:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      - lan
+
+networks:
+  lan:
+    driver: bridge
+
+volumes:
+  mysql:
