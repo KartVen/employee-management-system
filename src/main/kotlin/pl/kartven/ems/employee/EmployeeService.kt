@@ -1,6 +1,7 @@
 package pl.kartven.ems.employee
 
 import org.springframework.stereotype.Service
+import pl.kartven.ems.exception.NotFoundException
 
 @Service
 class EmployeeService(
@@ -14,11 +15,8 @@ class EmployeeService(
     }
 
     fun getEmployeeById(id: Long): Employee.ResponseDto? {
-        val employee = employeeRepository.findById(id);
-        if (employee.isPresent)
-            return Employee.ResponseDto.map(employee.get())
-        else
-            return null
+        val employee = employeeRepository.findById(id).orElseThrow { NotFoundException() }
+        return Employee.ResponseDto.map(employee)
     }
 
     fun deleteEmployee(id: Long) {
@@ -26,8 +24,7 @@ class EmployeeService(
     }
 
     fun updateEmployee(id: Long, employeeDto: Employee.RequestDto) {
-        val employeeDb = employeeRepository.findById(id);
-        val employee = employeeDb.get()
+        val employee = employeeRepository.findById(id).orElseThrow { NotFoundException() }
         employee.firstName = employeeDto.firstName
         employee.lastName = employeeDto.lastName
         employee.email = employeeDto.email

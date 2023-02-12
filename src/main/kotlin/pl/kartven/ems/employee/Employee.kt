@@ -1,9 +1,8 @@
 package pl.kartven.ems.employee
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import lombok.AllArgsConstructor
 import lombok.Data
-import lombok.NoArgsConstructor
+import pl.kartven.ems.util.Auditable
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -19,7 +18,7 @@ class Employee(
     var lastName: String? = null,
     @Email
     var email: String? = null
-) {
+) : Auditable<String>() {
     @Data
     public open class RequestDto(
         @JsonProperty("first_name")

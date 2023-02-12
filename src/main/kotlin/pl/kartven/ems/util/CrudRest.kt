@@ -1,4 +1,4 @@
-package pl.kartven.ems.util.`interface`
+package pl.kartven.ems.util
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
