@@ -10,3 +10,9 @@ spring:
       ddl-auto: update
   liquibase:
     change-log: classpath:/db/changelog/db.changelog-root.xml
+springdoc:
+  api-docs:
+    path: /docs
+  swagger-ui:
+    path: /docs.html
+    tags-sorter:

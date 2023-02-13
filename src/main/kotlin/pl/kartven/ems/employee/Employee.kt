@@ -21,9 +21,7 @@ class Employee(
 ) : Auditable<String>() {
     @Data
     public open class RequestDto(
-        @JsonProperty("first_name")
         var firstName: String? = null,
-        @JsonProperty("last_name")
         var lastName: String? = null,
         var email: String? = null
     ) {
@@ -41,9 +39,7 @@ class Employee(
 
     public class ResponseDto(
         var id: Long? = null,
-        @JsonProperty("first_name")
         var firstName: String? = null,
-        @JsonProperty("last_name")
         var lastName: String? = null,
         var email: String? = null
     ) {
